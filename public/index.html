@@ -20,7 +20,9 @@
               // like product ids or amount
             })
               .then((response) => response.json())
-              .then((order) => order.id);
+              .then((order) => { 
+                return order.id
+              });
           },
           // Finalize the transaction after payer approval
           onApprove: function (data, actions) {
