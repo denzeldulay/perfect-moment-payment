@@ -6,6 +6,10 @@ const app = express();
 
 app.use(express.static("public"));
 
+app.get("/favicon.ico", (req, res) => {
+  res.sendStatus(404);
+});
+
 app.post("/api/orders", async (req, res) => {
   try {
     const order = await paypal.createOrder();
