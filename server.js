@@ -21,6 +21,10 @@ app.get("/favicon.ico", (req, res) => {
   res.sendStatus(404);
 });
 
+app.get("/", async (req, res) => {
+  res.sendFile("public/something_went_wrong.html", { root: "." });
+});
+
 app.get("/api/:uid", async (req, res) => {
   try {
     uid = req.params.uid;
