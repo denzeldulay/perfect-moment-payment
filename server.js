@@ -32,7 +32,6 @@ app.get("/api/:uid", async (req, res) => {
       params = doc.data()["paymentParams"];
       email = params.split("/")[0];
       price = params.split("/")[1];
-      console.log(`${email} ${price}`);
     } else {
       res.sendFile("public/something_went_wrong.html", { root: "." });
     }
