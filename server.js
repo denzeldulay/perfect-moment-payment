@@ -74,7 +74,34 @@ app.post("/api/firestore/paying/done", async (req, res) => {
 });
 
 async function setSubscribed() {
-  await db.collection("eventSp").doc(uid).update({ subscriptionStatus: "yes" });
+  let pplan =
+    price == 2000 ? "12 Months" : price == 1100 ? "6 Months" : "1 Month";
+
+  let startDate = new Date().toDateString();
+  let endDate = new Date();
+
+  endDate.setDate(
+    endDate.getDate() +
+      (pplan === "12 Months" ? 365 : pplan === "6 Months" ? 182.5 : 30)
+  );
+
+  endDate = endDate.toDateString();
+
+  const details = [
+    "Paypal",
+    pplan,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    startDate,
+    endDate,
+  ];
+
+  await db
+    .collection("eventSp")
+    .doc(uid)
+    .update({ subscriptionDetails: details, subscriptionStatus: "yes" });
 }
 
 app.listen(8888);
