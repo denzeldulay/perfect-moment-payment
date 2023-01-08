@@ -104,4 +104,5 @@ async function setSubscribed() {
     .update({ subscriptionDetails: details, subscriptionStatus: "yes" });
 }
 
-app.listen(8888);
+const PORT = process.env.PORT || 8888;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
